@@ -1,0 +1,20 @@
+# define base img
+FROM python.12.4
+
+# Working directory
+WORKDIR /app
+
+# copy requirement 
+COPY requirement.txt .
+
+# RUN requirement.txt
+RUN pip install --no--cache requirement.txt
+
+# COPY rest of the application
+COPY . .
+
+# PORT selection
+EXPOSE 8000
+
+# Commmand to run docker file
+CMD [ "uvicorn", 'app:app' ,'--host', '0.0.0.0', '--port', '8000'  ]
